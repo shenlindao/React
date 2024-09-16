@@ -33,7 +33,9 @@
   flex-direction: column;
   max-width: 450px;
   align-items: center;
-  transform: translateX(50%);
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 @keyframes App-logo-spin {

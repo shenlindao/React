@@ -6,9 +6,7 @@ const text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ei
 
 function App() {
   return (
-    <div>
       <Message header={header} text={text}/>
-    </div>
   );
 }
 
