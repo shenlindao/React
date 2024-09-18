@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export function Comments() {
+function Comments() {
     const [comments, setComments] = useState([
         { id: 1, text: "Это первый комментарий" },
         { id: 2, text: "Это второй комментарий" },
