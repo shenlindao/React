@@ -1,0 +1,29 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  text-align: center;
+  height: 100vh;
+}
+
+.box {
+  width: 100%;
+  max-width: 600px;
+  height: 200px;
+  margin: 0 10px;
+}
+
+.dark {
+  background-color: #042020;
+  color: #fff9f9;
+}
+
+.light {
+  background-color: #fff9f9;
+  color: #042020;
+}
