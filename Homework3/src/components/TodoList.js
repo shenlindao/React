@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { TextField, Button, Box, Card, CardContent, CardActions, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import nextId from "react-id-generator";
 
 export default function Reviews() {
     const [comments, setComments] = useState([]);
@@ -17,7 +18,7 @@ export default function Reviews() {
         }
 
         const newCommentObj = {
-            id: comments.length + 1,
+            id: nextId(),
             text: newComment
         };
 
