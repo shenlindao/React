@@ -10,7 +10,7 @@ const AddProduct = () => {
 
   const handleSubmit = (values) => {
     const { name, description, price, available } = values;
-    if (!name || !description || isNaN(price) || price === "") {
+    if (!name || !description || isNaN(Number(price)) || price === "") {
       alert("Пожалуйста, заполните все поля корректно.");
       return;
     }
