@@ -1,16 +1,14 @@
 import React from "react";
 import Breadcrumbs from "../components/Breadcrumbs";
-import Catalog from "../components/Catalog";
+import Shop from "../components/Shop";
 import SimpleAdvantages from "../components/SimpleAdvantages";
 
 const CatalogPage = () => {
   return (
     <>
       <Breadcrumbs />
-      <div className="wrap">
-        <Catalog />
-      </div>
-        <SimpleAdvantages />
+      <Shop />
+      <SimpleAdvantages />
     </>
   );
 };

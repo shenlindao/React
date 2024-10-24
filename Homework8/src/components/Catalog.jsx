@@ -1,12 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../redux/cartSlice";
 import productsData from "../data/products";
 import cartIMG from "../assets/img/icons/cart.svg";
 
 const Catalog = () => {
   const dispatch = useDispatch();
+  const selectedSizes = useSelector((state) => state.filters.selectedSizes);
 
   const handleAddToCart = (item) => {
     dispatch(
@@ -16,21 +16,23 @@ const Catalog = () => {
         price: item.price,
         imgSrc: item.imgSrc,
         color: item.color,
-        size: item.size,
+        size: item.sizes[0],
         quantity: 1,
       })
     );
   };
 
+  const filteredProducts = selectedSizes.length
+    ? productsData.filter((item) =>
+        item.sizes.some((size) => selectedSizes.includes(size))
+      )
+    : productsData;
+
   return (
     <div className="wrap">
       <div className="catalog">
-        <div className="catalog__title">Featured Items</div>
-        <div className="catalog__subtitle">
-          Shop for items based on what we featured this week
-        </div>
         <div className="catalog__items">
-          {productsData.map((item, index) => (
+          {filteredProducts.map((item, index) => (
             <div key={index} className="catalog__items__item">
               <div className="catalog__items__item__hover_bg">
                 <button
@@ -56,10 +58,6 @@ const Catalog = () => {
             </div>
           ))}
         </div>
-        <Link to="./pages/catalog.html" className="catalog__button">
-          Browse All Product&nbsp;&nbsp;
-          <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
-        </Link>
       </div>
     </div>
   );
