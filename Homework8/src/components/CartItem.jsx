@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { removeItem, updateQuantity } from "../redux/cartSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
@@ -12,13 +13,13 @@ const CartItem = ({ item }) => {
   };
 
   const handleChangeQuantity = (e) => {
-    const quantity = e.target.value === '' ? '' : Number(e.target.value);
+    const quantity = e.target.value === "" ? "" : Number(e.target.value);
 
     dispatch(updateQuantity({ id: item.id, quantity: quantity }));
   };
-  
+
   const handleBlur = (e) => {
-    const quantity = e.target.value === '' ? 1 : Number(e.target.value);
+    const quantity = e.target.value === "" ? 1 : Number(e.target.value);
 
     if (quantity === 0) {
       dispatch(updateQuantity({ id: item.id, quantity: 0 }));
@@ -26,18 +27,17 @@ const CartItem = ({ item }) => {
       dispatch(updateQuantity({ id: item.id, quantity: quantity }));
     }
   };
-  
 
   return (
     <div className="cart__item">
       <div className="cart__pic">
-        <a href="./product.html">
+        <Link to={`/product/${item.id}`}>
           <img src={item.imgSrc} alt="cart_item" />
-        </a>
+        </Link>
       </div>
       <div className="cart__details">
         <div className="cart__prod_name">
-          <a href="./product.html">{item.title}</a>
+          <Link to={`/product/${item.id}`}>{item.title}</Link>
         </div>
         <div className="cart__props">
           <div className="cart__prod_color">
@@ -63,7 +63,11 @@ const CartItem = ({ item }) => {
         ${(item.price * item.quantity).toFixed(2)}
       </div>
       <div className="cart__action">
-        <FontAwesomeIcon className="cart__action__icon" icon={faTimesCircle} onClick={handleRemoveItem} />
+        <FontAwesomeIcon
+          className="cart__action__icon"
+          icon={faTimesCircle}
+          onClick={handleRemoveItem}
+        />
       </div>
     </div>
   );

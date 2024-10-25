@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../redux/cartSlice";
 import productsData from "../data/products";
@@ -8,15 +9,17 @@ const Catalog = () => {
   const dispatch = useDispatch();
   const selectedSizes = useSelector((state) => state.filters.selectedSizes);
 
-  const handleAddToCart = (item) => {
+  const handleAddToCart = (e, item) => {
+    e.preventDefault();
+    e.stopPropagation();
     dispatch(
       addItem({
         id: item.id,
         title: item.title,
         price: item.price,
         imgSrc: item.imgSrc,
-        color: item.color,
-        size: item.sizes[0],
+        colors: item.colors[0],
+        sizes: item.sizes[0],
         quantity: 1,
       })
     );
@@ -33,11 +36,15 @@ const Catalog = () => {
       <div className="catalog">
         <div className="catalog__items">
           {filteredProducts.map((item, index) => (
-            <div key={index} className="catalog__items__item">
+            <Link
+              to={`/product/${item.id}`}
+              key={index}
+              className="catalog__items__item"
+            >
               <div className="catalog__items__item__hover_bg">
                 <button
                   className="catalog__items__item__hover_bg__add_to_cart"
-                  onClick={() => handleAddToCart(item)}
+                  onClick={(e) => handleAddToCart(e, item)}
                 >
                   <img src={cartIMG} alt="cart" />
                   <span>Add to&nbsp;Cart</span>
@@ -55,7 +62,7 @@ const Catalog = () => {
                   2
                 )}`}</div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

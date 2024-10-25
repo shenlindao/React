@@ -4,7 +4,6 @@ import CartItem from "../components/CartItem";
 import CartTotals from "../components/CartTotals";
 import Breadcrumbs from "../components/Breadcrumbs";
 
-
 const CartPage = () => {
   const cartItems = useSelector((state) => state.cart.items);
 
